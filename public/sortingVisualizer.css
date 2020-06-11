@@ -4,7 +4,19 @@
     box-sizing: border-box;
 }
 
+
 .visualizer {
+    display: flex;
+    flex-direction: row;
     text-align: center;
+    justify-content: space-around;
+    width: 50vw;
+    margin: auto;
 }
 
+.number-bars {
+    background-color: rgb(207, 150, 159);
+    margin: 2.5px;
+    width: 5px;
+    flex-grow: 1;
+}

@@ -6,8 +6,8 @@ function SortingVisualizer() {
     function generateList() {
         numbers = [];
 
-        for (let i = 0; i < 10; i++) {
-            numbers.push(generateNumber(5, 1000))
+        for (let i = 0; i < 50; i++) {
+            numbers.push(generateNumber(5, 750))
         }
 
         setList(numbers);
@@ -15,7 +15,7 @@ function SortingVisualizer() {
 
 
     return (
-        <div>
+        <div className='container'>
             <nav>
                 <button onClick={generateList}>
                     Generate List
@@ -25,7 +25,11 @@ function SortingVisualizer() {
             <div className='visualizer'>
                 {numbers.map(number => {
                     return (
-                        <div>{number}</div>
+                        <div
+                            className='number-bars'
+                            style={{ height: `${number}px` }}
+                        >
+                        </div>
                     )
                 })}
             </div>
