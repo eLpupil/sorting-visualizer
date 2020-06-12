@@ -5,7 +5,7 @@ import NumberBar from './NumberBar';
 function SortingVisualizer() {
     let [numbers, setList] = useState([]);
 
-    let [arraySize, setSize] = useState('10'); // Option for array size
+    let [arraySize, setSize] = useState('50'); // Option for array size
 
     function generateList() {
         numbers = [];
@@ -25,8 +25,8 @@ function SortingVisualizer() {
     }
 
 
-    function bubbleSort() {
-
+    function selectionSort() {
+        // while list !== pre-sorted list
         setList(prevArray => {
             let currentArray = [...prevArray];
             for (let i = 0; i < currentArray.length; i++) {
@@ -35,12 +35,16 @@ function SortingVisualizer() {
                         let temp = currentArray[i];
                         currentArray[i] = currentArray[j];
                         currentArray[j] = temp;
+                        return currentArray;
                     }
                 }
             }
-
-            return currentArray;
         })
+
+    }
+
+    function handleSelection() {
+        setInterval(selectionSort, 100);
     }
 
     return (
@@ -49,11 +53,8 @@ function SortingVisualizer() {
                 <button onClick={generateList}>
                     Generate List
                 </button>
-                <button onClick={bubbleSort}>
-                    Bubble Sort
-                </button>
-                <button onClick={testFunction}>
-                    Test Button
+                <button onClick={handleSelection}>
+                    Selection Sort
                 </button>
             </nav>
 
@@ -65,12 +66,6 @@ function SortingVisualizer() {
 
     function generateNumber(min, max) {
         return (Math.floor(Math.random() * (max - min))) + min;
-    }
-
-    function testFunction() {
-        numbers.forEach(number => {
-            console.log(number.key);
-        })
     }
 
 }
