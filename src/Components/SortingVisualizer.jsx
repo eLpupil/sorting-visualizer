@@ -1,11 +1,16 @@
 import React, { useState } from 'react';
+import MenuBar from './MenuBar';
 import NumberBar from './NumberBar';
 
 
 function SortingVisualizer() {
+
+    let run;
+
     let [numbers, setList] = useState([]);
 
-    let [arraySize, setSize] = useState('50'); // Option for array size
+    let [arraySize, setSize] = useState('50');
+    let [sortSpeed, setSpeed] = useState('10'); // in ms
 
     function generateList() {
         numbers = [];
@@ -22,13 +27,15 @@ function SortingVisualizer() {
         }
 
         setList(numbers);
+        clearInterval(run);
+
     }
 
-
     function selectionSort() {
-        // while list !== pre-sorted list
         setList(prevArray => {
+
             let currentArray = [...prevArray];
+
             for (let i = 0; i < currentArray.length; i++) {
                 for (let j = i + 1; j < currentArray.length; j++) {
                     if (currentArray[j].props.value < currentArray[i].props.value) {
@@ -39,24 +46,36 @@ function SortingVisualizer() {
                     }
                 }
             }
+            clearInterval(run);
+            console.log('here');
+            return currentArray;
         })
-
     }
 
-    function handleSelection() {
-        setInterval(selectionSort, 100);
+    function selection() {
+        run = setInterval(selectionSort, sortSpeed);
     }
+
+    function setArraySize(event) {
+        setSize(event.target.value);
+    }
+
+    function setSortSpeed(event) {
+        setSpeed(event.target.value);
+    }
+
 
     return (
         <div className='container'>
-            <nav>
-                <button onClick={generateList}>
-                    Generate List
-                </button>
-                <button onClick={handleSelection}>
-                    Selection Sort
-                </button>
-            </nav>
+            <MenuBar
+                arraySize={arraySize}
+                updateArraySize={setArraySize}
+                sortSpeed={sortSpeed}
+                updateSpeed={setSortSpeed}
+                generateList={generateList}
+                selection={selection}
+                bubble
+            />
 
             <div className='visualizer'>
                 {numbers}
