@@ -1,0 +1,48 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.menu {
+    min-height: 5vh;
+    background-color: powderblue;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.menu button
+{
+    margin: auto 15px;
+    border-style: solid;
+    border-radius: 5px;
+    padding: 3px;
+}
+
+.menu .controls
+{
+    display: inline-block;
+    margin: auto 15px;
+    border-radius: 5px;
+    padding: 3px;
+}
+
+.visualizer {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    justify-content: space-around;
+    width: 50vw;
+    margin: auto;
+}
+
+/* Add a background pacman image that's clipped to the bars */
+
+.number-bars {
+    background-color: rgb(207, 150, 159);
+    margin: 0 2.5px;
+    min-width: 1px;
+    width: 5px;
+    flex-grow: 1;
+}
